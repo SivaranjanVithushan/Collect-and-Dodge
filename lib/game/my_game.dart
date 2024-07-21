@@ -21,6 +21,9 @@ class MyGame extends FlameGame with HasCollisionDetection, KeyboardEvents {
   final Set<LogicalKeyboardKey> _pressedKeys = {};
 
   @override
+  Color backgroundColor() => const Color(0xFF000080); // Dark blue background
+
+  @override
   Future<void> onLoad() async {
     await super.onLoad();
 
@@ -71,6 +74,9 @@ class MyGame extends FlameGame with HasCollisionDetection, KeyboardEvents {
   ) {
     if (event is KeyDownEvent) {
       _pressedKeys.add(event.logicalKey);
+      if (event.logicalKey == LogicalKeyboardKey.space) {
+        player.fire();
+      }
     } else if (event is KeyUpEvent) {
       _pressedKeys.remove(event.logicalKey);
     }
