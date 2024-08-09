@@ -21,8 +21,6 @@ flutter:
 
   assets:
     - assets/images/background/far.png
-    # - assets/images/background/mid.png
-    # - assets/images/background/near.png
     - assets/images/player_ship.png
     - assets/images/collectible.png
     - assets/images/bullet.png

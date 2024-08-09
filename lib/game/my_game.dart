@@ -15,8 +15,10 @@ class MyGame extends FlameGame with HasCollisionDetection, KeyboardEvents {
   int lives = 3;
   late TextComponent scoreText;
   late TextComponent livesText;
-  static const double gameWidth = 400;
-  static const double gameHeight = 600;
+  static double gameWidth =
+      MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width;
+  static double gameHeight =
+      MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height;
 
   final Set<LogicalKeyboardKey> _pressedKeys = {};
 
@@ -31,6 +33,10 @@ class MyGame extends FlameGame with HasCollisionDetection, KeyboardEvents {
         FixedResolutionViewport(resolution: Vector2(gameWidth, gameHeight));
 
     player = Player();
+    player.position = Vector2(
+        gameWidth / 2,
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height -
+            100);
     add(player);
 
     scoreText = TextComponent(
@@ -107,7 +113,10 @@ class MyGame extends FlameGame with HasCollisionDetection, KeyboardEvents {
     lives = 3;
     scoreText.text = 'Score: $score';
     livesText.text = 'Lives: $lives';
-    player.position = Vector2(175, 500);
+    // player.position = Vector2(
+    //     gameWidth / 2,
+    //     MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height -
+    //         50);
     removeWhere((component) => component is Collectible);
     resumeEngine();
   }
